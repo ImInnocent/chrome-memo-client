@@ -1,0 +1,11 @@
+#newMemo {
+  display: flex;
+}
+
+#newMemoText {
+  width: 180px;
+}
+
+#newMemoButton {
+  width: 50px;
+}
