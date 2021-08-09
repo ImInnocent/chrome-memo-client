@@ -1,0 +1,10 @@
+{
+  "name": "크롬 메모장",
+  "description": "간단한 메모, 달력 기능",
+  "version": "1.0",
+  "manifest_version": 1,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage"]
+}
