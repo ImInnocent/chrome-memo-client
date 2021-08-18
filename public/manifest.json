@@ -17,5 +17,8 @@
     "default_icon": "logo192.png",
     "default_popup": "popup.html"
   },
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
   "options_page": "index.html"
 }
