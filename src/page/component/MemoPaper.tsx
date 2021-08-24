@@ -9,6 +9,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import generate from '../../common/lib/generate';
 import Memo from '../../common/interface/Memo';
+import addNewMemo from '../../common/lib/addNewMemo';
+import deleteMemo from '../../common/lib/deleteMemo';
+import editMemo from '../../common/lib/editMemo';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,12 +30,17 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%", 
       marginRight: "1em",
     },
+    editTextField: {
+      width: "100%", 
+    },
   }),
 );
 
 function MemoPaper(): React.ReactElement {
   const [memoList, setMemoList] = useState<Memo[]>([]);
+  const [editMemoId, setEditMemoId] = useState(-1);
   const [newMemoText, setNewMemoText] = useState(""); // new memo input text
+  const [editMemoText, setEditMemoText] = useState("");
   const classes = useStyles();
   
   useEffect(() => {
@@ -46,6 +54,11 @@ function MemoPaper(): React.ReactElement {
     setNewMemoText(event.target.value);
   }
 
+  // handle input text changed
+  const handleChangeEditMemoText:React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setEditMemoText(event.target.value);
+  }
+
   // handle button clicked for add new memo
   const handleClickAddNewMemo:React.MouseEventHandler<HTMLButtonElement> = () => {
     // except 0 length 
@@ -53,17 +66,24 @@ function MemoPaper(): React.ReactElement {
       return;
     }
 
-    // load and add new text
-    chrome.storage.local.get(["memos", "nextId"], ({ memos, nextId }) => {
-      memos.push({ id: nextId, text: newMemoText });
-  
-      chrome.storage.local.set({ memos, nextId: nextId + 1 });
-
-      setMemoList(memos);
-    });
+    addNewMemo(newMemoText, setMemoList);
 
     // set input text to empty
     setNewMemoText("");
+  }
+
+  const handleDeleteMemo = (id: number) => {
+    deleteMemo(id, setMemoList);
+  }
+
+  const handleEditMemo = (id: number) => {
+    setEditMemoText("");
+    setEditMemoId(id);
+  }
+
+  const handleConfirmEdit = () => {
+    editMemo(editMemoId, editMemoText, setMemoList);
+    setEditMemoId(-1);
   }
 
   return (
@@ -77,17 +97,34 @@ function MemoPaper(): React.ReactElement {
                 <FolderIcon />
               </Avatar>
             </ListItemAvatar> */}
-            <ListItemText
-              primary={props.text}
-              // secondary={secondary ? 'Secondary text' : null}
-            />
+            {props.id !== editMemoId
+              ? <ListItemText
+                  primary={props.text}
+                  // secondary={secondary ? 'Secondary text' : null}
+                />
+              : <TextField
+                  size="small"
+                  id="memo-paper-edit-text-field"
+                  className={classes.editTextField}
+                  value={editMemoText}
+                  variant="outlined"
+                  onChange={handleChangeEditMemoText}
+                />
+            }
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
-                <EditIcon />
-              </IconButton>
-              <IconButton edge="end" aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
+              {props.id !== editMemoId
+                ? <>
+                    <IconButton edge="end" aria-label="edit" onClick={() => handleEditMemo(props.id)}>
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteMemo(props.id)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </>
+                : <Button variant="contained" color="primary" onClick={handleConfirmEdit}>
+                    확인
+                  </Button>
+              }
             </ListItemSecondaryAction>
           </ListItem>
         , memoList, 'memo-paper-list')}
