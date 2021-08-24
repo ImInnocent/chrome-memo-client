@@ -7,6 +7,8 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import _ from 'lodash';
+
 import generate from '../../common/lib/generate';
 import Memo from '../../common/interface/Memo';
 import addNewMemo from '../../common/lib/addNewMemo';
@@ -31,7 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: "1em",
     },
     editTextField: {
-      width: "100%", 
+      width: "100%",
+      marginRight: 44,
     },
   }),
 );
@@ -54,11 +57,6 @@ function MemoPaper(): React.ReactElement {
     setNewMemoText(event.target.value);
   }
 
-  // handle input text changed
-  const handleChangeEditMemoText:React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    setEditMemoText(event.target.value);
-  }
-
   // handle button clicked for add new memo
   const handleClickAddNewMemo:React.MouseEventHandler<HTMLButtonElement> = () => {
     // except 0 length 
@@ -76,11 +74,23 @@ function MemoPaper(): React.ReactElement {
     deleteMemo(id, setMemoList);
   }
 
+  // handle edit text changed
+  const handleChangeEditMemoText:React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setEditMemoText(event.target.value);
+  }
+
+  // handle when edit icon clicked
   const handleEditMemo = (id: number) => {
-    setEditMemoText("");
+    const selectedMemo = _.find(memoList, { id });
+
+    if (!!!selectedMemo)
+      return
+
+    setEditMemoText(selectedMemo.text);
     setEditMemoId(id);
   }
 
+  // handle when edit confirm
   const handleConfirmEdit = () => {
     editMemo(editMemoId, editMemoText, setMemoList);
     setEditMemoId(-1);
