@@ -1,5 +1,3 @@
-import Memo from './common/interface/Memo';
-
 chrome.runtime.onInstalled.addListener(() => {
   const initMemos = [
     { id: 1, text: "환영합니다!" },
