@@ -9,12 +9,16 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
+    appBar: {
+      backgroundColor: "rgb(255, 227, 0)",
+    },
     menuButton: {
       marginRight: theme.spacing(2),
     },
     title: {
       flexGrow: 1,
       display: 'none',
+      color: "rgb(26, 52, 89)",
       [theme.breakpoints.up('sm')]: {
         display: 'block',
       },
@@ -27,7 +31,7 @@ export default function TopAppBar(): React.ReactElement {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -35,7 +39,7 @@ export default function TopAppBar(): React.ReactElement {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <MenuIcon htmlColor="rgb(26, 52, 89)" />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             크롬 메모장
