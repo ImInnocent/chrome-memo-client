@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { 
@@ -7,6 +7,7 @@ import {
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MemoPaper from './component/MemoPaper';
 import TopAppBar from './component/TopAppBar';
+import MainDrawer from './component/MainDrawer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,10 +23,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Index() {
   const classes = useStyles();
+  const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
 
   return (
     <div>
-      <TopAppBar />
+      <MainDrawer drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened} />
+      <TopAppBar setDrawerOpened={setDrawerOpened} />
       <Grid container className={classes.gridContainer}>
         {/* Left Grid */}
         <Grid xs={12} sm={6}>

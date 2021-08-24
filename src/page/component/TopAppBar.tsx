@@ -26,8 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function TopAppBar(): React.ReactElement {
+export default function TopAppBar(props: { setDrawerOpened: Function }): React.ReactElement {
   const classes = useStyles();
+  const { setDrawerOpened } = props;
 
   return (
     <div className={classes.root}>
@@ -38,6 +39,7 @@ export default function TopAppBar(): React.ReactElement {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={() => setDrawerOpened(true)}
           >
             <MenuIcon htmlColor="rgb(26, 52, 89)" />
           </IconButton>
