@@ -1,6 +1,6 @@
 export default function generate(
   element: React.FunctionComponent<any>, 
-  data: object[],
+  data: any[],
   keyPrefix: string) {
     
   return data.map((value, i) =>
