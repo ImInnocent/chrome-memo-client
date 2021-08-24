@@ -8,3 +8,11 @@ html, body, #root {
 body {
   background-color: rgb(240, 240, 240);
 }
+
+#version {
+  color:rgb(125, 125, 125);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+}
