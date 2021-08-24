@@ -1,24 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Index() {
-  const [memoLlist, setMemoList] = useState([]);
+import { 
+  Paper, Grid,  Typography,
+} from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import MemoPaper from './component/MemoPaper';
 
-  useEffect(() => {
-    chrome.storage.sync.get("memos", ({ memos }) => {
-      setMemoList(memos);
-    });
-  }, []);
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      height: "100%",
+    },
+    comingSoon: {
+      margin: '1em',
+      padding: '1em'
+    },
+  }),
+);
+
+function Index() {
+  const classes = useStyles();
 
   return (
-    <div>
-      {/* memo list */}
-      <ul id="memoList">
-        {memoLlist.map((memo, i) => (
-          <li key={`page-memo-list-${i}`}>{memo}</li>
-        ))}
-      </ul>
-    </div>
+    <Grid container className={classes.root}>
+      {/* Left Grid */}
+      <Grid xs={12} sm={6}>
+        <MemoPaper />
+      </Grid>
+
+      {/* Right Grid */}
+      <Grid xs={12} sm={6}>
+        <Paper className={classes.comingSoon}>
+          <Typography variant="h4" align="center">
+            다음 기능을 기대해 주세요!
+          </Typography>
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
 

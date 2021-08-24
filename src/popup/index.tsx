@@ -7,7 +7,7 @@ function Index() {
 
   // load from chrome storage
   useEffect(() => {
-    chrome.storage.sync.get("memos", ({ memos }) => {
+    chrome.storage.local.get("memos", ({ memos }) => {
       setMemoList(memos);
     });
   }, []);
@@ -25,10 +25,10 @@ function Index() {
     }
 
     // load and add new text
-    chrome.storage.sync.get("memos", ({ memos }) => {
+    chrome.storage.local.get("memos", ({ memos }) => {
       memos.push(newMemoText);
   
-      chrome.storage.sync.set({ memos });
+      chrome.storage.local.set({ memos });
 
       setMemoList(memos);
     });
