@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { 
-  Paper, List, ListItem, ListItemSecondaryAction, ListItemText, IconButton, TextField, Button,
+  List, ListItem, ListItemSecondaryAction, ListItemText, IconButton, TextField, Button,
 } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ClearIcon from '@material-ui/icons/Clear';
