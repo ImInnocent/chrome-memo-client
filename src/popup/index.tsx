@@ -10,6 +10,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import generate from '../common/lib/generate';
 import Memo from '../common/interface/Memo';
 import addNewMemo from '../common/lib/addNewMemo';
+import deleteMemo from '../common/lib/deleteMemo';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -61,6 +62,10 @@ function Index() {
     setNewMemoText("");
   }
 
+  const handleDeleteMemo = (id: number) => {
+    deleteMemo(id, setMemoList);
+  }
+
   return (
     <div className={classes.root}>
       {/* Memo List */}
@@ -77,7 +82,7 @@ function Index() {
               // secondary={secondary ? 'Secondary text' : null}
             />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
+              <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteMemo(props.id)}>
                 <ClearIcon />
               </IconButton>
             </ListItemSecondaryAction>
