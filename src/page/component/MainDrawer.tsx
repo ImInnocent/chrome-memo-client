@@ -3,11 +3,11 @@ import React, { useContext } from 'react';
 import { 
   SwipeableDrawer, Divider , List, ListItem, ListItemIcon, ListItemText,
 } from '@material-ui/core';
-import _ from 'lodash';
-
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import DvrIcon from '@material-ui/icons/Dvr';
 import AnnouncementIcon from '@material-ui/icons/Announcement';
+import _ from 'lodash';
+
 import PageManageContext from './../../context/PageManageContext';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -84,5 +84,5 @@ export default function MainDrawer(props: { drawerOpened: boolean, setDrawerOpen
         {menuList()}
       </div>
     </SwipeableDrawer>
-  )
+  );
 }

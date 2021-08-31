@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 
 import { Divider, Paper, Typography, } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: "1em",
     }
   })
-)
+);
 
 export default function MemoPaper(): React.ReactElement {
   const classes = useStyles();

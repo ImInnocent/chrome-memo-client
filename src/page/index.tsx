@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import TopAppBar from './component/TopAppBar';
 import MainDrawer from './component/MainDrawer';
-import PageManageContext, { PageManageProvider } from '../context/PageManageContext';
+import { PageManageProvider } from '../context/PageManageContext';
 import PageContainer from './component/PageContainer';
-
 
 function Index() {
   const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
