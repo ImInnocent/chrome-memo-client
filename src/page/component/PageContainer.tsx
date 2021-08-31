@@ -9,7 +9,6 @@ import PageManageContext from '../../context/PageManageContext';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     gridContainer: {
-      height: "100%",
     },
     comingSoon: {
       margin: '1em',
