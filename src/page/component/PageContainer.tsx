@@ -5,6 +5,7 @@ import {   Paper, Grid,  Typography, } from '@material-ui/core';
 
 import MemoPaper from './MemoPaper';
 import PageManageContext from '../../context/PageManageContext';
+import AnnouncementPaper from './AnnouncementPaper';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,9 +43,7 @@ export default function PageContainer(): React.ReactElement {
           </Grid>
         ),
         announcement: (
-          <div>
-            announcement
-          </div>
+          <AnnouncementPaper />
         )
       }[page || 'memo']}
     </>
