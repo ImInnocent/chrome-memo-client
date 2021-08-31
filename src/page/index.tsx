@@ -1,43 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import { 
-  Paper, Grid,  Typography,
-} from '@material-ui/core';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import MemoPaper from './component/MemoPaper';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      height: "100%",
-    },
-    comingSoon: {
-      margin: '1em',
-      padding: '1em'
-    },
-  }),
-);
+import TopAppBar from './component/TopAppBar';
+import MainDrawer from './component/MainDrawer';
+import { PageManageProvider } from '../context/PageManageContext';
+import PageContainer from './component/PageContainer';
 
 function Index() {
-  const classes = useStyles();
+  const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
 
   return (
-    <Grid container className={classes.root}>
-      {/* Left Grid */}
-      <Grid xs={12} sm={6}>
-        <MemoPaper />
-      </Grid>
-
-      {/* Right Grid */}
-      <Grid xs={12} sm={6}>
-        <Paper className={classes.comingSoon}>
-          <Typography variant="h4" align="center">
-            다음 기능을 기대해 주세요!
-          </Typography>
-        </Paper>
-      </Grid>
-    </Grid>
+    <PageManageProvider>
+      <MainDrawer drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened} />
+      <TopAppBar setDrawerOpened={setDrawerOpened} />
+      <PageContainer />
+    </PageManageProvider>
   );
 }
 

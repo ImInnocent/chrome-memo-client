@@ -6,4 +6,4 @@ chrome.runtime.onInstalled.addListener(() => {
 
   chrome.storage.local.set({ memos: initMemos, nextId: 3 });
   console.log('Memo inited!');
-})
+});
