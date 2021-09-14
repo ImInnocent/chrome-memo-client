@@ -7,7 +7,5 @@
   "main-drawer-memo": "메모장",
   "main-drawer-announcement": "공지사항",
   "main-drawer-settings": "설정",
-  "settings-paper-select-language": "언어",
-  "settings-language-ko": "한국어",
-  "settings-language-en": "영어"
+  "settings-paper-select-language": "언어"
 }
