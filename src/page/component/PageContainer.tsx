@@ -5,8 +5,9 @@ import { Paper, Grid,  Typography, } from '@material-ui/core';
 
 import MemoPaper from './MemoPaper';
 import PageManageContext from '../../context/PageManageContext';
-import AnnouncementPaper from './AnnouncementPaper';
 import { useLanguage } from './../../context/LanguageContext';
+import AnnouncementPaper from './AnnouncementPaper';
+import SettingsPaper from './SettingsPaper';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,7 +47,10 @@ export default function PageContainer(): React.ReactElement {
         ),
         announcement: (
           <AnnouncementPaper />
-        )
+        ),
+        settings: (
+          <SettingsPaper />
+        ),
       }[page || 'memo']}
     </>
   );

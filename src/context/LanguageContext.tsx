@@ -78,3 +78,6 @@ export function useLanguage() {
 
   return state;
 }
+export function isPossibleLanguage(lang: string): lang is PossibleLanguages {
+  return languageList.indexOf(lang) >= 0;
+}

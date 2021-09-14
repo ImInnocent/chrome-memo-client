@@ -6,6 +6,7 @@ import {
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import DvrIcon from '@material-ui/icons/Dvr';
 import AnnouncementIcon from '@material-ui/icons/Announcement';
+import SettingsIcon from '@material-ui/icons/Settings';
 import _ from 'lodash';
 
 import PageManageContext from './../../context/PageManageContext';
@@ -38,6 +39,10 @@ export default function MainDrawer(props: { drawerOpened: boolean, setDrawerOpen
       {
         key: 'announcement',
         icon: <AnnouncementIcon />,
+      },
+      {
+        key: 'settings',
+        icon: <SettingsIcon />,
       },
     ],
   ];
