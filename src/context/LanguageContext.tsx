@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 
 import words, { languageList, PossibleLanguages } from '../data/words';
+import announcements, { Announcement } from '../data/announcements';
 
 const LanguageContext = React.createContext<LanguageContextProps | null>(null);
 const { Provider, Consumer: LanguageConsumer } = LanguageContext;
@@ -38,8 +39,25 @@ const LanguageProvider: React.FunctionComponent = props => {
     return word;
   }
 
+  const getAnnouncement = () => {
+    // get announcement with current language
+    let announcement = announcements[lang];
+
+    // if not exist, find in en
+    if (announcement === undefined) {
+      announcement = announcement['en'];
+    }
+
+    // if not, return empty string with warning message
+    if (announcement === undefined) {
+      console.warn('Announcement not exist: ' + lang);
+    }
+
+    return announcement;
+  }
+
   return (
-    <Provider value={{ lang, setLang, getWord }}>
+    <Provider value={{ lang, setLang, getWord, getAnnouncement }}>
       {props.children}
     </Provider>
   );
@@ -49,6 +67,7 @@ export default LanguageContext;
 export interface LanguageContextProps {
   lang: PossibleLanguages;
   setLang: React.Dispatch<React.SetStateAction<PossibleLanguages>>;
+  getAnnouncement: () => Announcement;
   getWord: (key: string) => string;
 };
 export { LanguageProvider, LanguageConsumer };

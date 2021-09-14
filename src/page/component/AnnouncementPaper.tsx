@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Divider, Paper, Typography, } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import _ from 'lodash';
 
-import announcement from '../../data/announcement.json';
+import { useLanguage } from './../../context/LanguageContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,11 +21,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function MemoPaper(): React.ReactElement {
   const classes = useStyles();
+  const [cache, setCache] = useState<JSX.Element[]>([]);
+  const { getAnnouncement } = useLanguage();
+
+  useEffect(() => {
+    setCache(getAnnouncementElements());
+  }, []);
 
   const getAnnouncementElements = () => {
     let list = [];
 
-    for (let data of announcement) {
+    for (let data of getAnnouncement()) {
       list.push(
         <div className={classes.box}>
           <Typography variant="h4">{data.title}</Typography>
@@ -46,7 +52,7 @@ export default function MemoPaper(): React.ReactElement {
 
   return (
     <Paper className={classes.root}>
-      {getAnnouncementElements()}
+      {cache}
     </Paper>
   );
 }
