@@ -6,6 +6,7 @@ import { Paper, Grid,  Typography, } from '@material-ui/core';
 import MemoPaper from './MemoPaper';
 import PageManageContext from '../../context/PageManageContext';
 import AnnouncementPaper from './AnnouncementPaper';
+import { useLanguage } from './../../context/LanguageContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function PageContainer(): React.ReactElement {
   const classes = useStyles();
   const { page } = useContext(PageManageContext);
+  const { getWord } = useLanguage();
 
   return (
     <>
@@ -36,7 +38,7 @@ export default function PageContainer(): React.ReactElement {
             <Grid xs={12} sm={6}>
               <Paper className={classes.comingSoon}>
                 <Typography variant="h4" align="center">
-                  다음 기능을 기대해 주세요!
+                  {getWord('page-container-comming-up')}
                 </Typography>
               </Paper>
             </Grid>

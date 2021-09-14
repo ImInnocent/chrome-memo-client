@@ -1,3 +1,9 @@
 {
-  "test": "테스트 문자열"
+  "test": "테스트 문자열",
+  "top-app-bar-title": "크롬 메모장",
+  "page-container-comming-up": "다음 기능을 기대해 주세요!",
+  "confirm": "확인",
+  "add": "추가",
+  "main-drawer-memo": "메모장",
+  "main-drawer-announcement": "공지사항"
 }

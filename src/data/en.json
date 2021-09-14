@@ -1,3 +1,9 @@
 {
-  "test": "test string"
+  "test": "test string",
+  "top-app-bar-title": "Chrome Notepad",
+  "page-container-comming-up": "Comming up next!",
+  "confirm": "Confirm",
+  "add": "Add",
+  "main-drawer-memo": "Notepad",
+  "main-drawer-announcement": "Announcement"
 }

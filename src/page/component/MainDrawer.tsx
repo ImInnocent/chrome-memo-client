@@ -9,6 +9,7 @@ import AnnouncementIcon from '@material-ui/icons/Announcement';
 import _ from 'lodash';
 
 import PageManageContext from './../../context/PageManageContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,27 +19,28 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const pages = [
-  [
-    {
-      key: 'memo',
-      title: '메모장',
-      icon: <DvrIcon />,
-    },
-  ],
-  [
-    {
-      key: 'announcement',
-      title: '공지사항',
-      icon: <AnnouncementIcon />,
-    },
-  ],
-];
-
 export default function MainDrawer(props: { drawerOpened: boolean, setDrawerOpened: Function }): React.ReactElement {
   const classes = useStyles();
   const { setPage } = useContext(PageManageContext);
   const { drawerOpened, setDrawerOpened } = props;
+  const { getWord } = useLanguage();
+
+  
+
+  const pages = [
+    [
+      {
+        key: 'memo',
+        icon: <DvrIcon />,
+      },
+    ],
+    [
+      {
+        key: 'announcement',
+        icon: <AnnouncementIcon />,
+      },
+    ],
+  ];
 
   const handleChangePage = (key: string) => {
     if (setPage) {
@@ -56,7 +58,7 @@ export default function MainDrawer(props: { drawerOpened: boolean, setDrawerOpen
           {pages[i].map(pageInfo => (
             <ListItem button key={`drawer-list-${pageInfo.key}`} onClick={() => handleChangePage(pageInfo.key)}>
               <ListItemIcon>{pageInfo.icon}</ListItemIcon>
-              <ListItemText primary={pageInfo.title} />
+              <ListItemText primary={getWord(`main-drawer-${pageInfo.key}`)} />
             </ListItem>
           ))}
         </List>

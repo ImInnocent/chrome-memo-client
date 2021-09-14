@@ -3,6 +3,7 @@ import React from 'react';
 import { AppBar, Typography, IconButton, Toolbar } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useLanguage } from './../../context/LanguageContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function TopAppBar(props: { setDrawerOpened: Function }): React.ReactElement {
   const classes = useStyles();
   const { setDrawerOpened } = props;
+  const { getWord } = useLanguage();
 
   return (
     <div className={classes.root}>
@@ -44,7 +46,7 @@ export default function TopAppBar(props: { setDrawerOpened: Function }): React.R
             <MenuIcon htmlColor="rgb(26, 52, 89)" />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            크롬 메모장
+            {getWord('top-app-bar-title')}
           </Typography>
         </Toolbar>
       </AppBar>

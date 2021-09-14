@@ -14,6 +14,7 @@ import Memo from '../../common/interface/Memo';
 import addNewMemo from '../../common/lib/addNewMemo';
 import deleteMemo from '../../common/lib/deleteMemo';
 import editMemo from '../../common/lib/editMemo';
+import { useLanguage } from './../../context/LanguageContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -45,6 +46,7 @@ function MemoPaper(): React.ReactElement {
   const [newMemoText, setNewMemoText] = useState(""); // new memo input text
   const [editMemoText, setEditMemoText] = useState("");
   const classes = useStyles();
+  const { getWord } = useLanguage();
   
   useEffect(() => {
     chrome.storage.sync.get("memos", ({ memos }) => {
@@ -132,7 +134,7 @@ function MemoPaper(): React.ReactElement {
                     </IconButton>
                   </>
                 : <Button variant="contained" color="primary" onClick={handleConfirmEdit}>
-                    확인
+                    {getWord('confirm')}
                   </Button>
               }
             </ListItemSecondaryAction>
@@ -151,7 +153,7 @@ function MemoPaper(): React.ReactElement {
           onChange={handleChangeNewMemoText}
         />
         <Button variant="contained" color="primary" onClick={handleClickAddNewMemo}>
-          추가
+          {getWord('add')}
         </Button>
       </div>
     </Paper>
