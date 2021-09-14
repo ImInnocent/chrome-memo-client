@@ -47,7 +47,7 @@ function MemoPaper(): React.ReactElement {
   const classes = useStyles();
   
   useEffect(() => {
-    chrome.storage.local.get("memos", ({ memos }) => {
+    chrome.storage.sync.get("memos", ({ memos }) => {
       setMemoList(memos);
     });
   }, []);

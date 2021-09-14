@@ -39,7 +39,7 @@ function Index() {
 
   // load from chrome storage
   useEffect(() => {
-    chrome.storage.local.get("memos", ({ memos }) => {
+    chrome.storage.sync.get("memos", ({ memos }) => {
       setMemoList(memos);
     });
   }, []);
