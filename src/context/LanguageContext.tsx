@@ -22,17 +22,17 @@ const LanguageProvider: React.FunctionComponent = props => {
   }, [])
 
   const getWord = (key: string) => {
-    // get word from current language
+    // get word with current language
     let word = words[lang][key];
-    console.log(word);
 
-    // if not exist, find in en-us
+    // if not exist, find in en
     if (word === undefined) {
       word = words['en'][key];
     }
 
     // if not, return empty string with warning message
     if (word === undefined) {
+      word = key;
       console.warn('Word not exist: ' + key);
     }
 
