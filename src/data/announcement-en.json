@@ -1,24 +1,32 @@
 [
   {
+    "title": "v1.2.0",
+    "list": [
+      "Setting Page is added.",
+      "Notes sync with your account that connected in chrome.",
+      "You can choose language. (brower language is basic)"
+    ]
+  },
+  {
     "title": "v1.1.0",
     "list": [
-      "상단바가 추가되었습니다.",
-      "상단 좌측에 메뉴창이 생겼습니다.",
-      "공지사항을 확인할 수 있습니다."
+      "App bar added.",
+      "Menus are added. Check left top button.",
+      "You can check announcements."
     ]
   },
   {
     "title": "v1.0.1",
     "list": [
-      "메모가 삭제되지 않는 버그가 수정되었습니다."
+      "Bug fixed that notes are not able to delete."
     ]
   },
   {
     "title": "v1.0.0",
     "list": [
-      "메모를 생성, 수정, 삭제할 수 있습니다.",
-      "팝업창을 사용할 수 있습니다.",
-      "새 창을 열었을 때 크롬 메모장으로 연결됩니다."
+      "You can create, edit, delete notes.",
+      "you can use popup page.",
+      "Chrome notepad will opened when you open new tab."
     ]
   }
 ]
