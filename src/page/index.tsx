@@ -3,21 +3,27 @@ import ReactDOM from 'react-dom';
 
 import TopAppBar from './component/TopAppBar';
 import MainDrawer from './component/MainDrawer';
-import { PageManageProvider } from '../context/PageManageContext';
 import PageContainer from './component/PageContainer';
+import DatePickerDialog from './component/DatePickerDialog';
+
+import { PageManageProvider } from '../context/PageManageContext';
 import { LanguageProvider } from '../context/LanguageContext';
+import { DialogProvider } from '../context/DialogContext';
 
 function Index() {
   const [drawerOpened, setDrawerOpened] = useState<boolean>(false);
 
   return (
-    <LanguageProvider>
-      <PageManageProvider>
-        <MainDrawer drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened} />
-        <TopAppBar setDrawerOpened={setDrawerOpened} />
-        <PageContainer />
-      </PageManageProvider>
-    </LanguageProvider>
+    <DialogProvider>
+      <LanguageProvider>
+        <PageManageProvider>
+          <MainDrawer drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened} />
+          <TopAppBar setDrawerOpened={setDrawerOpened} />
+          <PageContainer />
+          <DatePickerDialog />
+        </PageManageProvider>
+      </LanguageProvider>
+    </DialogProvider>
   );
 }
 
