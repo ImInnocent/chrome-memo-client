@@ -35,6 +35,8 @@ export default function MainDrawer(): React.ReactElement {
 
   const handleClose = () => {
     closeDialog(DIALOG_KEY);
+
+    setDate(new Date());
   }
 
   const handleClick = (value: Date) => {
@@ -47,6 +49,8 @@ export default function MainDrawer(): React.ReactElement {
     if (!!cb) {
       cb(dateFormat(date));
     }
+
+    setDate(new Date());
   }
 
   return (
