@@ -31,18 +31,19 @@ export default function PageContainer(): React.ReactElement {
         memo: (
           <Grid container className={classes.gridContainer}>
             {/* Left Grid */}
-            <Grid xs={12} sm={6}>
+            {/* <Grid xs={12} sm={6}> */}
+            <Grid xs={12} sm={12}>
               <MemoPaper />
             </Grid>
 
             {/* Right Grid */}
-            <Grid xs={12} sm={6}>
+            {/* <Grid xs={12} sm={6}>
               <Paper className={classes.comingSoon}>
                 <Typography variant="h4" align="center">
                   {getWord('page-container-comming-up')}
                 </Typography>
               </Paper>
-            </Grid>
+            </Grid> */}
           </Grid>
         ),
         announcement: (
