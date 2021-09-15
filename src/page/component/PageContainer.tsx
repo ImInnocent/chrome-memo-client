@@ -8,7 +8,6 @@ import PageManageContext from '../../context/PageManageContext';
 import { useLanguage } from './../../context/LanguageContext';
 import AnnouncementPaper from './AnnouncementPaper';
 import SettingsPaper from './SettingsPaper';
-import CalendarPaper from './CalendarPaper';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,7 +37,11 @@ export default function PageContainer(): React.ReactElement {
 
             {/* Right Grid */}
             <Grid xs={12} sm={6}>
-              <CalendarPaper />
+              <Paper className={classes.comingSoon}>
+                <Typography variant="h4" align="center">
+                  {getWord('page-container-comming-up')}
+                </Typography>
+              </Paper>
             </Grid>
           </Grid>
         ),
