@@ -56,7 +56,7 @@ function Index() {
       return;
     }
 
-    addNewMemo(newMemoText, setMemoList);
+    addNewMemo(newMemoText, null, setMemoList);
 
     // set input text to empty
     setNewMemoText("");

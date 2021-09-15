@@ -9,5 +9,6 @@
   "main-drawer-settings": "Settings",
   "settings-paper-select-language": "Language",
   "settings-language-ko": "Korean",
-  "settings-language-en": "English"
+  "settings-language-en": "English",
+  "date-picker-dialog-title": "Select Date"
 }

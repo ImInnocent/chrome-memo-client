@@ -7,5 +7,6 @@
   "main-drawer-memo": "메모장",
   "main-drawer-announcement": "공지사항",
   "main-drawer-settings": "설정",
-  "settings-paper-select-language": "언어"
+  "settings-paper-select-language": "언어",
+  "date-picker-dialog-title": "날짜 선택"
 }

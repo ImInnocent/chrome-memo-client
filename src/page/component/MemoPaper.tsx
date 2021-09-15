@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 import { 
-  Paper, List, ListItem, ListItemSecondaryAction, ListItemText, IconButton, TextField, Button,
+  Paper, List, ListItem, ListItemSecondaryAction, ListItemText, IconButton, TextField, Button, Chip, Avatar,
 } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 
 import _ from 'lodash';
 
@@ -15,6 +16,7 @@ import addNewMemo from '../../common/lib/addNewMemo';
 import deleteMemo from '../../common/lib/deleteMemo';
 import editMemo from '../../common/lib/editMemo';
 import { useLanguage } from './../../context/LanguageContext';
+import { useDialog } from './../../context/DialogContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,11 +33,18 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     inputTextField: {
       width: "100%", 
-      marginRight: "1em",
+      // marginRight: "1em",
     },
     editTextField: {
       width: "100%",
-      marginRight: 44,
+      marginRight: 74,
+    },
+    dateChip: {
+      marginRight: 14,
+    },
+    datePickerButton: {
+      width: 40,
+      height: 40,
     },
   }),
 );
@@ -44,9 +53,14 @@ function MemoPaper(): React.ReactElement {
   const [memoList, setMemoList] = useState<Memo[]>([]);
   const [editMemoId, setEditMemoId] = useState(-1);
   const [newMemoText, setNewMemoText] = useState(""); // new memo input text
+  const [newMemoDate, setNewMemoDate] = useState<string | null>(null); // new memo date
+
   const [editMemoText, setEditMemoText] = useState("");
+  const [editMemoDate, setEditMemoDate] = useState<string | null>(null); 
+
   const classes = useStyles();
   const { getWord } = useLanguage();
+  const { openDialog } = useDialog();
   
   useEffect(() => {
     chrome.storage.sync.get("memos", ({ memos }) => {
@@ -59,6 +73,26 @@ function MemoPaper(): React.ReactElement {
     setNewMemoText(event.target.value);
   }
 
+  // handle date selectd
+  const handleEditMemoDateConfirm = (date: string) => {
+    setEditMemoDate(date);
+  }
+
+  // handle open date picker dialog
+  const handleClickEditMemoDate:React.MouseEventHandler<HTMLButtonElement> = () => {
+    openDialog('DatePicker', handleEditMemoDateConfirm);
+  }
+
+  // handle date selectd
+  const handleNewMemoDateConfirm = (date: string) => {
+    setNewMemoDate(date);
+  }
+
+  // handle open date picker dialog
+  const handleClickNewMemoDate:React.MouseEventHandler<HTMLButtonElement> = () => {
+    openDialog('DatePicker', handleNewMemoDateConfirm);
+  }
+
   // handle button clicked for add new memo
   const handleClickAddNewMemo:React.MouseEventHandler<HTMLButtonElement> = () => {
     // except 0 length 
@@ -66,10 +100,11 @@ function MemoPaper(): React.ReactElement {
       return;
     }
 
-    addNewMemo(newMemoText, setMemoList);
+    addNewMemo(newMemoText, newMemoDate, setMemoList);
 
     // set input text to empty
     setNewMemoText("");
+    setNewMemoDate(null);
   }
 
   const handleDeleteMemo = (id: number) => {
@@ -94,7 +129,7 @@ function MemoPaper(): React.ReactElement {
 
   // handle when edit confirm
   const handleConfirmEdit = () => {
-    editMemo(editMemoId, editMemoText, setMemoList);
+    editMemo(editMemoId, editMemoText, editMemoDate, setMemoList);
     setEditMemoId(-1);
   }
 
@@ -104,16 +139,20 @@ function MemoPaper(): React.ReactElement {
       <List className={classes.memoList}>
         {generate((props) =>
           <ListItem key={props.key}>
-            {/* <ListItemAvatar>
-              <Avatar>
-                <FolderIcon />
-              </Avatar>
-            </ListItemAvatar> */}
             {props.id !== editMemoId
-              ? <ListItemText
-                  primary={props.text}
-                  // secondary={secondary ? 'Secondary text' : null}
-                />
+              ? <>
+                  {!!props.date && 
+                    <Chip
+                      className={classes.dateChip}
+                      icon={<ScheduleIcon />} 
+                      label={props.date} 
+                    />
+                  }
+                  <ListItemText
+                    primary={props.text}
+                    // secondary={secondary ? 'Secondary text' : null}
+                  />
+                </>
               : <TextField
                   size="small"
                   id="memo-paper-edit-text-field"
@@ -133,9 +172,14 @@ function MemoPaper(): React.ReactElement {
                       <DeleteIcon />
                     </IconButton>
                   </>
-                : <Button variant="contained" color="primary" onClick={handleConfirmEdit}>
-                    {getWord('confirm')}
-                  </Button>
+                : <>
+                    <IconButton className={classes.datePickerButton} aria-label="date" onClick={handleClickEditMemoDate}>
+                      <ScheduleIcon />
+                    </IconButton>
+                    <Button variant="contained" color="primary" onClick={handleConfirmEdit}>
+                      {getWord('confirm')}
+                    </Button>
+                  </>
               }
             </ListItemSecondaryAction>
           </ListItem>
@@ -152,6 +196,9 @@ function MemoPaper(): React.ReactElement {
           variant="outlined"
           onChange={handleChangeNewMemoText}
         />
+        <IconButton className={classes.datePickerButton} aria-label="date" onClick={handleClickNewMemoDate}>
+          <ScheduleIcon />
+        </IconButton>
         <Button variant="contained" color="primary" onClick={handleClickAddNewMemo}>
           {getWord('add')}
         </Button>
