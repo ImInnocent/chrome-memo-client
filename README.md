@@ -12,8 +12,8 @@ https://chrome.google.com/webstore/detail/chrome-notepad/apijbpbcechjobmeafogbml
 구글에서 사용하는 Material 디자인으로 구성되어 깔끔합니다.
 
 #### 어떻게 빠르게 메모할 수 있나요?
-크롬 우측 상단의 퍼즐모양 이미지를 선택하신 후, 로아 돌깎깎 옆의 핀을 눌러주세요.<br/>
-로아 돌깎깎이 고정되면, 아이콘을 클릭하여 미니 메모 팝업이 나옵니다.
+크롬 우측 상단의 퍼즐모양 이미지를 선택하신 후, 크롬 메모장 옆의 핀을 눌러주세요.<br/>
+크롬 메모장이 고정되면, 아이콘을 클릭하여 미니 메모 팝업이 나옵니다.
 
 <img src="https://lh3.googleusercontent.com/GYv_FywBaUW9jfF05FvQodcmr6RS5eMfY3pJugXYXkEIxwSgSQ9bHbjR04-jxYrGxBuIkATtlzZ5A9C2wMRZ9HOW=w640-h400-e365-rj-sc0x00ffffff" width="640" /> 
 
