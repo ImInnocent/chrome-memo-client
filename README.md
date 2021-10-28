@@ -1,6 +1,6 @@
 # 크롬 메모장 (Chrome Notepad)
 
-<img src="https://github.com/ImInnocent/chrome-memo-client/store/screenshot.png" width="640" /> 
+<img src="https://github.com/ImInnocent/chrome-memo-client/blob/master/store/screenshot.png" width="640" /> 
 
 https://chrome.google.com/webstore/detail/chrome-notepad/apijbpbcechjobmeafogbmlbaofmehed?hl=ko
 
